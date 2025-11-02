@@ -15,10 +15,12 @@
 
 # next.js
 /.next/
-/out/
+/out/        # Next.js statik dışa aktarım klasörü (Gerekli değil)
+/out
+.next
 
-# production
-/build
+# production (Next.js'te .next klasörünün içeriği build'i temsil eder)
+/build       # Eğer farklı bir build klasörü kullanıyorsanız kalsın.
 
 # misc
 .DS_Store
@@ -30,12 +32,21 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (Çok Önemli Güvenlik Ayarı)
 .env*
+!**/.env.development
+!**/.env.staging
+!**/.env.production.local
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+# next-env.d.ts (Genellikle gerekli olduğu için YORUM SATIRI yaptım)
+# next-env.d.ts
+
+# Ek Next.js Cache ve Log Dosyaları
+.next-env.local
+.next-env.production
+.next-env.development
