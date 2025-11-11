@@ -15,6 +15,14 @@ const nextConfig = {
       { protocol: "https", hostname: "bulentsevinc.com", pathname: "/public/images/**" },
     ],
   },
+  /*
+    images: {
+      remotePatterns: [
+        { protocol: "https", hostname: process.env.NEXT_PUBLIC_BACKEND_URL },
+        { protocol: "http", hostname: process.env.NEXT_PUBLIC_BACKEND_URL, port: "" },
+      ],
+    },
+  */
 };
 
 export default nextConfig;

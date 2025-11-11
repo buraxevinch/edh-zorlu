@@ -91,7 +91,16 @@ const Slider = ({ data }) => {
       >
         {list.map((item, key) => (
           <SwiperSlide key={key} className="h-full relative">
-            <Image alt={"Slider image " + (key + 1)} src={root(0) + item.img.src} className="object-cover" fill placeholder="blur" blurDataURL={item.img.base} priority={!key} />
+            <Image
+              alt={"Slider image " + (key + 1)}
+              src={root(0) + item.img.src}
+              className="object-cover"
+              fill
+              placeholder="blur"
+              blurDataURL={item.img.base}
+              priority={key < 2}
+              sizes="(min-width: 1280px) 100vw, 1px"
+            />
             {item.vid && <video src={root(1) + item.vid} className="w-full h-auto absolute inset-0 object-cover pointer-events-none" autoPlay loop muted />}
             {item.shd && <div className="absolute inset-0" style={{ backgroundColor: item.shd }} />}
             {mounted && ((item.str.length > 0 && item.str[0]) || (item.btn.length > 0 && item.btn[""])) && (
