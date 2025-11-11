@@ -8,7 +8,7 @@ const HandleSocial = ({ data, text }) => {
 
   return (
     <div className="mb-2 container">
-      {text && <b className="mb-3 block text-center text-lg text-tclr">{text}</b>}
+      {text && <b className="mb-3 block text-center text-lg text-slate-600">{text}</b>}
       <div className="flex items-center justify-center gap-3">
         {socials.map((itm, key) => (
           <a

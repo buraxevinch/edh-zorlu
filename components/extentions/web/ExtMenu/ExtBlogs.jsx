@@ -13,10 +13,10 @@ const CustomNavigation = () => {
 
   return (
     <div className="mt-10 flex justify-center gap-3">
-      <button className="p-2.5 bg-white border rounded-full" onClick={() => swiper.slidePrev()}>
+      <button className="p-2.5 bg-white border rounded-full" aria-label="Previous" onClick={() => swiper.slidePrev()}>
         <Icon icon="chevron-left" />
       </button>
-      <button className="p-2.5 bg-white border rounded-full" onClick={() => swiper.slideNext()}>
+      <button className="p-2.5 bg-white border rounded-full" aria-label="Next" onClick={() => swiper.slideNext()}>
         <Icon icon="chevron-right" />
       </button>
     </div>
