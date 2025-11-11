@@ -9,19 +9,18 @@ const nextConfig = {
       ],
     },
   ],
-  images: {
-    // Doğrudan nihai alan adınızı (PROTOKOLSUZ!) tanımlayın
-    remotePatterns: [
-      { protocol: "https", hostname: "www.bulentsevinc.com", pathname: "/public/images/**" }, // Resimlerinizin bulunduğu alt dizini de belirtmek daha güvenli
-      { protocol: "https", hostname: "bulentsevinc.com", pathname: "/public/images/**" }, // Hem www'lu hem www'suz hali
-    ],
-  },
   // images: {
   //   remotePatterns: [
-  //     { protocol: "https", hostname: process.env.NEXT_PUBLIC_BACKEND_URL },
-  //     { protocol: "http", hostname: process.env.NEXT_PUBLIC_BACKEND_URL, port: "" },
+  //     { protocol: "https", hostname: "www.bulentsevinc.com", pathname: "/public/images/**" },
+  //     { protocol: "https", hostname: "bulentsevinc.com", pathname: "/public/images/**" },
   //   ],
   // },
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: process.env.NEXT_PUBLIC_BACKEND_URL },
+      { protocol: "http", hostname: process.env.NEXT_PUBLIC_BACKEND_URL, port: "" },
+    ],
+  },
 };
 
 export default nextConfig;

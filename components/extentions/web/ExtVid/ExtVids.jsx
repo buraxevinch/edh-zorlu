@@ -52,7 +52,13 @@ const ExtVids = ({ data, int }) => {
                 >
                   {list.map((item, key) => (
                     <SwiperSlide key={key} className="!h-auto">
-                      <a data-sub-html={item.name} data-src={item.img.vid} data-poster={root + item.img.src} className="lg-item h-full block relative group rounded-2xl overflow-hidden">
+                      <a
+                        href={item.img.vid}
+                        data-sub-html={item.name}
+                        data-src={item.img.vid}
+                        data-poster={root + item.img.src}
+                        className="lg-item h-full block relative group rounded-2xl overflow-hidden"
+                      >
                         <Image alt={item.name} src={root + item.img.src} width={item.img.wdt} height={item.img.hgh} className="w-full h-full object-cover" />
                         <div className="p-4 absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-150">
                           <Icon icon="play-circle" className="delay-300 duration-300 scale-0 group-hover:scale-100" size={40} />
