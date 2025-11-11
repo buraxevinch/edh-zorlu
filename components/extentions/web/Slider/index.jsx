@@ -98,7 +98,8 @@ const Slider = ({ data }) => {
               fill
               placeholder="blur"
               blurDataURL={item.img.base}
-              priority={key < 2}
+              priority={key === 0}
+              fetchPriority={key === 0 ? "high" : "auto"}
               sizes="(min-width: 1280px) 100vw, 1px"
             />
             {item.vid && <video src={root(1) + item.vid} className="w-full h-auto absolute inset-0 object-cover pointer-events-none" autoPlay loop muted />}
