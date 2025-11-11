@@ -26,7 +26,7 @@ const ExtTreatl = ({ cls, data }) => {
       <div className={"grid " + cls + " gap-8"}>
         {list.map((item, key) => (
           <Link key={key} href={item.url} className="relative group" title={det}>
-            <figure>
+            <figure className="h-full flex flex-col">
               <Image
                 alt={item.ttl}
                 src={root + item.img.src}
@@ -34,6 +34,7 @@ const ExtTreatl = ({ cls, data }) => {
                 height={item.img.hgh}
                 placeholder="blur"
                 blurDataURL={item.base}
+                quality={100}
                 className="w-full h-full object-cover rounded-3xl shadow-md"
               />
               <figcaption className="text-center relative">

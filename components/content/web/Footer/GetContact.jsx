@@ -1,4 +1,5 @@
 import { Icon } from "@/components/extentions/Icon";
+import { normalizeText } from "@/components/extentions/web/extUtils";
 
 const GetContact = ({ data }) => {
   const cnt = data.reduce((acc, info) => {
@@ -26,7 +27,7 @@ const GetContact = ({ data }) => {
         )}
         <div className="flex items-center gap-2">
           <Icon icon={cnt[3][0].icon} size={24} className="shrink-0" />
-          <p className="text-sm whitespace-pre-wrap">{cnt[3][0].txt}</p>
+          <p className="text-sm whitespace-pre-wrap">{normalizeText(cnt[3][0].txt)}</p>
         </div>
       </div>
     </div>

@@ -25,20 +25,11 @@ const Menu = ({ data, dict, list, media, stn }) => {
                   lang: stn?.lang,
                   name: "lform",
                   title: dict[35],
-                  submit: { class: "py-2.5 w-full bg-black text-white rounded-sm duration-300 opacity-75 hover:opacity-100", text: dict[40] },
+                  submit: { class: "py-2.5 w-full bg-black text-white rounded-sm duration-300 opacity-75 hover:opacity-100" },
                   fields: [
                     { type: "text", name: "name", placeholder: dict[36], rules: [{ type: "required" }, { type: "min", value: 3 }] },
                     { type: "email", name: "email", placeholder: dict[37], rules: [{ type: "required" }, { type: "email" }] },
                     { type: "tel", name: "phone", placeholder: dict[38], rules: [{ type: "required" }, { type: "tel" }] },
-                    {
-                      type: "select",
-                      name: "topic",
-                      options: [
-                        { label: "Genel", value: "general" },
-                        { label: "Teknik", value: "tech" },
-                      ],
-                      rules: [{ type: "required" }],
-                    },
                     { type: "textarea", name: "message", placeholder: dict[39], rules: [{ type: "required" }, { type: "min", value: 5 }] },
                   ],
                 };
@@ -125,13 +116,13 @@ const Menu = ({ data, dict, list, media, stn }) => {
                       {mntxt.desc && <div className="edt" dangerouslySetInnerHTML={{ __html: mntxt.desc }} />}
                     </div>
                   )}
-                  {left && aside && <PageExt data={[0, aside, grid]} />}
+                  {left && aside && <PageExt data={[0, aside, grid]} dict={dict} />}
                 </div>
               )}
             </div>
           </div>
         )}
-        {galeri && <PageExt data={[1, galeri, grid]} />}
+        {galeri && <PageExt data={[1, galeri, grid]} dict={dict} />}
         {bulten === "1" && <Bulletin dict={dict} lang={stn.lng} />}
       </div>
     );

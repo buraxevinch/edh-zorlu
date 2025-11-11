@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import extComponentMap from "../extComponentMap";
 import { renderStaticExt, setCls } from "../extUtils";
 
-const PageExt = ({ data, int = 0 }) => {
+const PageExt = ({ data, dict, int = 0 }) => {
   const extensions = data[1] || {};
   return (
     <>
@@ -22,7 +22,7 @@ const PageExt = ({ data, int = 0 }) => {
 
           return (
             <Fragment key={fullExtKey}>
-              <CallPage cls={sc} data={obj} int={currentInt} />
+              <CallPage cls={sc} data={obj} dict={dict} int={currentInt} />
             </Fragment>
           );
         }

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
@@ -9,7 +10,8 @@ import "swiper/css/effect-fade";
 const HEADER_HEIGHT = 96;
 
 const Slider = ({ data }) => {
-  const { list, size, time } = data;
+  const { info, list, size, time } = data;
+  const lstsize = list.length;
   const [height, setHeight] = useState(null);
   const [mounted, setMounted] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -68,7 +70,7 @@ const Slider = ({ data }) => {
         );
       default:
         return (
-          <Link to={btn.url} className={cls} style={{ background: btn.bg, color: btn.clr }}>
+          <Link href={btn.url} className={cls} style={{ background: btn.bg, color: btn.clr }}>
             {btn.ttl}
           </Link>
         );
@@ -95,9 +97,7 @@ const Slider = ({ data }) => {
             {mounted && ((item.str.length > 0 && item.str[0]) || (item.btn.length > 0 && item.btn[""])) && (
               <div className="absolute inset-6">
                 <div
-                  className={`absolute${data.glry && (item.pos[1] == 2 || item.pos[1] == 5 || item.pos[1] == 8) ? " pb-10" : ""} ${elmPos[item.pos[1]]}${
-                    item.pos[2] > 0 ? (item.pos[2] > 1 ? " text-right" : " text-center") : ""
-                  } flex flex-col gap-1`}
+                  className={`absolute ${elmPos[item.pos[1]]}${item.pos[2] > 0 ? (item.pos[2] > 1 ? " text-right" : " text-center") : ""} flex flex-col gap-1`}
                   style={{ width: (item.pos[0] !== "0" ? 100 - 5 * parseInt(item.pos[0]) : 100) + "%" }}
                 >
                   {item.str.length > 0 &&
@@ -120,9 +120,12 @@ const Slider = ({ data }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {mounted && (
-        <div className="pt-5 pl-6 w-[56%] absolute right-0 bottom-0 bg-[var(--background)] rounded-tl-3xl z-10 before:w-5 before:h-10 before:absolute before:-top-10 before:right-0 before:rounded-br-3xl before:bg-transparent before:shadow-[0_20px_0_0_var(--background)] after:w-5 after:h-10 after:absolute after:-left-5 after:bottom-0 after:rounded-br-3xl after:bg-transparent after:shadow-[0_20px_0_0_var(--background)]">
-          <Swiper onSwiper={setThumbsSwiper} spaceBetween={20} slidesPerView={4} watchSlidesProgress={true} modules={[Thumbs]} className="h-28">
+      {info && mounted && (
+        <div
+          className="pt-5 pl-6 absolute right-0 bottom-0 bg-[var(--background)] rounded-tl-3xl z-10 before:w-5 before:h-10 before:absolute before:-top-10 before:right-0 before:rounded-br-3xl before:bg-transparent before:shadow-[0_20px_0_0_var(--background)] after:w-5 after:h-10 after:absolute after:-left-5 after:bottom-0 after:rounded-br-3xl after:bg-transparent after:shadow-[0_20px_0_0_var(--background)]"
+          style={{ width: info[0] }}
+        >
+          <Swiper onSwiper={setThumbsSwiper} spaceBetween={20} slidesPerView={info[1]} watchSlidesProgress={true} modules={[Thumbs]} className="h-28">
             {list.map((item, key) => (
               <SwiperSlide key={key} className="h-20 relative cursor-pointer">
                 <Image alt={"Thumb image " + (key + 1)} src={root(0) + item.img.src} sizes="200px" className="w-full h-full object-cover rounded-xl pointer-events-none" fill />
