@@ -11,33 +11,12 @@ const HEADER_HEIGHT = 96;
 
 const Slider = ({ data }) => {
   const { info, list, size, time } = data;
-  // const lstsize = list.length;
-  // const [height, setHeight] = useState(null);
   const [mounted, setMounted] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
   const parsedSize = size ? parseFloat(size) : null;
   const isDynamic = parsedSize && !isNaN(parsedSize) && parsedSize > 0;
-
   const height = isDynamic ? `calc(${parsedSize * 100}vh - ${HEADER_HEIGHT}px)` : `${list[0].img.hgh}px`;
 
-  /*
-    const calculateDynamicHeight = () => {
-      if (!parsedSize) return null;
-      return `${window.innerHeight * parsedSize - HEADER_HEIGHT}px`;
-    };
-
-    useEffect(() => {
-      setMounted(true);
-      if (isDynamic) setHeight(calculateDynamicHeight());
-      else setHeight(list[0].img.hgh + "px");
-      if (isDynamic) {
-        const handleResize = () => setHeight(calculateDynamicHeight());
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-      }
-    }, [data, isDynamic, parsedSize]);
-  */
   useEffect(() => setMounted(true), []);
 
   const root = (r) => process.env.NEXT_PUBLIC_MEDIA_URL + "/public/" + (r ? "video/" : "images/");
