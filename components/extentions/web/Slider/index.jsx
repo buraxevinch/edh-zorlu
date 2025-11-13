@@ -11,28 +11,34 @@ const HEADER_HEIGHT = 96;
 
 const Slider = ({ data }) => {
   const { info, list, size, time } = data;
-  const lstsize = list.length;
-  const [height, setHeight] = useState(null);
+  // const lstsize = list.length;
+  // const [height, setHeight] = useState(null);
   const [mounted, setMounted] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const parsedSize = size ? parseFloat(size) : null;
   const isDynamic = parsedSize && !isNaN(parsedSize) && parsedSize > 0;
-  const calculateDynamicHeight = () => {
-    if (!parsedSize) return null;
-    return `${window.innerHeight * parsedSize - HEADER_HEIGHT}px`;
-  };
 
-  useEffect(() => {
-    setMounted(true);
-    if (isDynamic) setHeight(calculateDynamicHeight());
-    else setHeight(list[0].img.hgh + "px");
-    if (isDynamic) {
-      const handleResize = () => setHeight(calculateDynamicHeight());
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, [data, isDynamic, parsedSize]);
+  const height = isDynamic ? `calc(${parsedSize * 100}vh - ${HEADER_HEIGHT}px)` : `${list[0].img.hgh}px`;
+
+  /*
+    const calculateDynamicHeight = () => {
+      if (!parsedSize) return null;
+      return `${window.innerHeight * parsedSize - HEADER_HEIGHT}px`;
+    };
+
+    useEffect(() => {
+      setMounted(true);
+      if (isDynamic) setHeight(calculateDynamicHeight());
+      else setHeight(list[0].img.hgh + "px");
+      if (isDynamic) {
+        const handleResize = () => setHeight(calculateDynamicHeight());
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+      }
+    }, [data, isDynamic, parsedSize]);
+  */
+  useEffect(() => setMounted(true), []);
 
   const root = (r) => process.env.NEXT_PUBLIC_MEDIA_URL + "/public/" + (r ? "video/" : "images/");
   const elmPos = [
@@ -138,7 +144,7 @@ const Slider = ({ data }) => {
           <Swiper onSwiper={setThumbsSwiper} spaceBetween={20} slidesPerView={info[1]} watchSlidesProgress={true} modules={[Thumbs]} className="h-28">
             {list.map((item, key) => (
               <SwiperSlide key={key} className="h-20 relative cursor-pointer">
-                <Image alt={"Thumb image " + (key + 1)} src={root(0) + item.img.src} sizes="200px" className="w-full h-full object-cover rounded-xl pointer-events-none" fill />
+                <Image alt={"Thumb image " + (key + 1)} src={root(0) + item.img.src} sizes="200px" className="object-cover rounded-xl pointer-events-none" fill />
                 <span className="w-6 h-6 block absolute -right-6 -bottom-6 rounded-tl-lg bg-[var(--background)] duration-500 z-10 before:w-2.5 before:h-5 before:absolute before:-top-5 before:right-0 before:rounded-br-xl before:bg-transparent before:shadow-[0_10px_0_0_var(--background)] after:w-2.5 after:h-5 after:absolute after:-left-2.5 after:bottom-0  after:rounded-br-xl after:bg-transparent after:shadow-[0_10px_0_0_var(--background)]" />
               </SwiperSlide>
             ))}
