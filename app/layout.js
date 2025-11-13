@@ -4,7 +4,7 @@ import { ModalProvider } from "./providers/ModalContext";
 import { DEFAULT_LOCALE, DEFAULT_NAME } from "@/lib/config/locales";
 import "./globals.css";
 
-const poppins = Poppins({ subsets: ["latin"], variable: "--font-poppins", weight: ["100", "200", "300", "400", "600", "700"] });
+const poppins = Poppins({ subsets: ["latin"], variable: "--font-poppins", weight: ["400", "500", "700"], fallback: ["system-ui", "Arial"] });
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),

@@ -44,7 +44,7 @@ const ExtTreats = ({ cls, data, int }) => {
               className="pgOut !pb-15 h-full"
             >
               {list.map((item, key) => (
-                <SwiperSlide key={key} className="!h-auto relative group">
+                <SwiperSlide key={key} className="relative group">
                   <Link href={item.url} title={det}>
                     <Image
                       alt={item.ttl}
@@ -53,10 +53,10 @@ const ExtTreats = ({ cls, data, int }) => {
                       height={item.img.hgh}
                       placeholder="blur"
                       blurDataURL={item.base}
-                      className="w-full h-full object-cover rounded-xl shadow-md"
+                      className="w-full h-auto object-cover rounded-xl shadow-md"
                     />
                     <div className="absolute inset-0 duration-500 rounded-xl group-hover:bg-black/30" />
-                    <div className="flex flex-col items-center gap-2 absolute inset-x-2 -bottom-12 text-center opacity-0 duration-500 group-hover:-bottom-6 group-hover:opacity-100">
+                    <div className="flex flex-col items-center gap-2 absolute inset-x-2 -bottom-6 text-center opacity-0 duration-500 group-hover:bottom-4 group-hover:opacity-100">
                       <b className="truncate text-white">{item.ttl}</b>
                       <div className="p-2.5 w-16 h-16 flex justify-center bg-white rounded-full">
                         <div className="p-2 border rounded-full bg-light">
